@@ -1,0 +1,40 @@
+// User Schema (job seekers + employers)
+{
+  _id: ObjectId,
+  name: String,
+  email: String,
+  passwordHash: String,
+  role: "jobseeker" | "employer",
+  profile: {
+    skills: [String],
+    location: String,
+    bio: String,
+    contact: String,
+    workHistory: [ { company, title, from, to, description } ]
+  }
+}
+
+// Job Listing Schema
+{
+  _id: ObjectId,
+  employerId: ObjectId,
+  title: String,
+  description: String,
+  requirements: [String],
+  location: String,
+  jobType: String,  // Full-time, Part-time, Contract, etc.
+  deadline: Date,
+  isFilled: Boolean,
+  createdAt: Date,
+}
+
+// Application Schema
+{
+  _id: ObjectId,
+  jobId: ObjectId,
+  seekerId: ObjectId,
+  resumeLink: String,
+  coverLetter: String,
+  status: "applied" | "reviewed" | "rejected" | "accepted",
+  appliedAt: Date
+}
